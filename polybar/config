@@ -191,13 +191,13 @@ fuzzy-match=false
 ws-icon-1 = I;%{F#F9DE8F}
 ws-icon-2 = II;%{F#ff9b93}
 ws-icon-3 = III;%{F#95e1d3}
-ws-icon-4 = IV;%{F#81A1C1}
-ws-icon-5 = V;%{F#A3BE8C}
+ws-icon-4 = IV;%{F#A3BE8C}
+ws-icon-5 = V;%{F#81A1C1}
 ws-icon-6 = VI;%{F#F9DE8F} 
 ws-icon-7 = VII;%{F#ff9b93}
 ws-icon-8 = VIII;%{F#95e1d3}
-ws-icon-9 = IX;%{F#81A1C1}
-ws-icon-0 = X;%{F#A3BE8C} 
+ws-icon-9 = IX;%{F#A3BE8C}
+ws-icon-0 = X;%{F#81A1C1} 
 ws-icon-default = " "
 
 format = <label-state>
@@ -531,6 +531,7 @@ format-underline = #3384d0
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
+
 ################################################################################
 
 [module/mpd]
@@ -555,6 +556,35 @@ bar-progress-fill-background = ${colors.background}
 bar-progress-indicator-foreground = ${colors.foreground}
 format-online-foreground = ${colors.foreground}
 format-online-background = ${colors.background}
+################################################################################
+
+[module/networkspeedup]
+;https://github.com/jaagr/polybar/wiki/Module:-network
+type = internal/network
+interface = enp0s31f6
+;interface = wlp0s20f3
+label-connected = "%upspeed:7%"
+format-connected = <label-connected>
+format-connected-prefix = ""
+format-connected-prefix-foreground = #FE522C
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.background}
+;format-connected-underline = #62FF00
+
+################################################################################
+
+[module/networkspeeddown]
+;https://github.com/jaagr/polybar/wiki/Module:-network
+type = internal/network
+interface = enp0s31f6
+;interface = wlp0s20f3
+label-connected = "%downspeed:7%"
+format-connected = <label-connected>
+format-connected-prefix = ""
+format-connected-prefix-foreground = #3EC13F
+format-connected-foreground = ${colors.foreground}
+format-connected-background = ${colors.background}
+;format-connected-underline = #62FF00
 
 ################################################################################
 
@@ -570,6 +600,17 @@ scroll-down = ~/.config/polybar/scripts/pavolume.sh --down
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 label-padding = 1
+
+################################################################################
+
+[module/sep]
+; alternative separator
+type = custom/text
+content = 
+content-foreground = ${colors.foreground}
+content-background =  ${colors.background}
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
 
 ################################################################################
 
@@ -638,6 +679,21 @@ label =  %output:0:150:%
 
 ################################################################################
 
+[module/uptime]
+;https://github.com/jaagr/polybar/wiki/User-contributed-modules#uptime
+type = custom/script
+exec = uptime | awk -F, '{sub(".*up ",x,$1);print $1}'
+interval = 100
+label = Uptime : %output%
+
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+format-prefix = " "
+format-prefix-foreground = #C15D3E
+format-underline = #C15D3E
+
+################################################################################
+
 [module/volume]
 ;https://github.com/jaagr/polybar/wiki/Module:-volume
 type = internal/volume
@@ -669,6 +725,20 @@ format-muted-prefix = "  "
 format-muted-prefix-foreground = "#ff0000"
 format-muted-foreground = ${colors.foreground}
 format-muted-background = ${colors.background}
+
+################################################################################
+
+[module/weather]
+type = custom/script
+interval = 10
+format = <label>
+format-prefix = " "
+format-prefix-foreground = #3EC13F
+format-underline = #3EC13F
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+exec = python -u ~/.config/polybar/scripts/weather.py
+tail = true
 
 #################################################################################
 
@@ -768,6 +838,27 @@ bar-empty-foreground = #fff
 format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 
+################################################################################
+
+[module/xkeyboard]
+;https://github.com/jaagr/polybar/wiki/Module:-xkeyboard
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+format-prefix-background = ${colors.background}
+format-prefix-underline = #3ecfb2
+format-foreground = ${colors.foreground}
+format-background = ${colors.background}
+
+label-layout = %layout%
+label-layout-underline = #3ecfb2
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.background}
+label-indicator-underline = ${colors.foreground}
+
 ###############################################################################
 
 [module/bluetooth]
@@ -784,11 +875,11 @@ label = %output%
 [module/agenda]
 type = custom/script
 ; Show the next event and forget cache automatically every 60 minutes
-exec = python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -c ~/.config/i3-agenda/client_secret.json -ttl 10
+exec = python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -c ~/.config/i3-agenda/client_secret_1029722840018-nfoqs1u2pvtd67l73bv93kt1639ojehd.apps.googleusercontent.com.json -ttl 10
 ; left click to launch Google Calendar
 click-left = firefox https://calendar.google.com/calendar/u/0/r
 ; right click force update the cache, if for example you just added a new event
-click-right = notify-send "syncing..." && python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -c ~/.config/i3-agenda/client_secret.json --update && notify-send -t 2000 "sync finished"
+click-right = notify-send "syncing..." && python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -c ~/.config/i3-agenda/client_secret_1029722840018-nfoqs1u2pvtd67l73bv93kt1639ojehd.apps.googleusercontent.com.json --update && notify-send -t 2000 "sync finished"
 interval = 60
 label = %{F#61afef}%{F-} %{T5}%output%%{T-}
 
