@@ -15,7 +15,7 @@ super + {apostrophe}
         rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 # lock screen
-super + l
+super + p
         ~/.config/i3lock/lock.sh
 #
 # bspwm hotkeys
