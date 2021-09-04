@@ -11,6 +11,7 @@ color5 = #c678dd
 color6 = #56b6c2
 color7 = #abb2bf
 color8 = #545862
+alert = #ff0011
 dark-light = #272A2B 
 active-light = #313435
 
@@ -38,8 +39,7 @@ compositing-border = over
 
 [bar/mainbar-bspwm]
 monitor = DP-2
-;monitor-fallback = eDP-1
-monitor-fallback = eDP-1-1
+monitor-fallback = eDP-1
 width = 100%
 height = 24
 ;offset-x = 1%
