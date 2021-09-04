@@ -11,7 +11,11 @@ main() {
       xdotool windowmove $window_id -- -2000 0
       ;;
     "Spotify")
-      echo "desktop=^4"
+      if lspci | grep -q "GeForce GTX 1070"; then
+        echo "desktop=^4"
+      else
+        echo "desktop=^9"
+      fi
       ;;
     "")
       sleep 0.5
