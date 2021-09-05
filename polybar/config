@@ -174,6 +174,76 @@ scroll-down = #bspwm.prev
 
 ################################################################################
 ################################################################################
+############               MAINBAR-BSPWM-SINGLE-MONITOR             ############
+################################################################################
+################################################################################
+
+[bar/mainbar-bspwm-nodock]
+monitor = eDP-1
+width = 100%
+height = 24
+;offset-x = 1%
+;offset-y = 1%
+radius = 0.0
+fixed-center = true
+bottom = false
+; separator = 
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+border-top-color = ${colors.background}
+border-bottom-color = ${colors.background}
+
+line-size = 3
+line-color = #f00
+
+wm-restack = bspwm
+override-redirect = true
+
+; Enable support for inter-process messaging
+; See the Messaging wiki page for more details.
+enable-ipc = true
+
+border-size = 0
+;border-left-size = 0
+;border-right-size = 25
+;border-top-size = 0
+;border-bottom-size = 7
+
+border-top-size = 5
+border-bottom-size = 5
+
+padding-left = 1
+padding-right = 0
+
+module-margin-left = 0
+module-margin-right = 0
+
+;https://github.com/jaagr/polybar/wiki/Fonts
+font-0 = JetBrainsMonoNL Nerd Font:style=Bold:pixelsize=12;2
+font-1 = JetBrainsMonoNL Nerd Font:size=13;3
+font-2 = Material Design Icons:style=Bold:size=13;3
+font-3 = unifont:fontformat=truetype:size=13:antialias=true;
+font-4 = JetBrainsMonoNL Nerd Font:size=10;2
+
+modules-left = round-left bspwm round-right padding1 round-left spotify round-right
+modules-center = windows_list
+modules-right = pavolume round-left bluetooth round-right battery wired-network wireless-network round-left date-short round-right powermenu
+
+tray-detached = false
+tray-offset-x = 0
+tray-offset-y = 0
+tray-padding = 1
+tray-maxsize = 21
+tray-scale = 1.0
+tray-position = right
+tray-background = ${colors.background}
+
+scroll-down = #bspwm.prev
+scroll-up = #bspwm.next
+
+################################################################################
+################################################################################
 ############                       MODULE BSPWM                     ############
 ################################################################################
 ################################################################################
@@ -189,14 +259,14 @@ pin-workspaces = true
 fuzzy-match=false
 
 ws-icon-1 = I;%{F#F9DE8F}
-ws-icon-2 = II;%{F#ff9b93}
-ws-icon-3 = III;%{F#95e1d3}
+ws-icon-2 = II;%{F#fafafa}
+ws-icon-3 = III;%{F#105399}
 ws-icon-4 = IV;%{F#A3BE8C}
-ws-icon-5 = V;%{F#81A1C1}
+ws-icon-5 = V;%{F#81A1A1}
 ws-icon-6 = VI;%{F#F9DE8F} 
-ws-icon-7 = VII;%{F#ff9b93}
-ws-icon-8 = VIII;%{F#95e1d3}
-ws-icon-9 = IX;%{F#A3BE8C}
+ws-icon-7 = VII;%{F#61afef}
+ws-icon-8 = VIII;%{F#abb2bf}
+ws-icon-9 = IX;%{F#1DB954}
 ws-icon-0 = X;%{F#81A1C1} 
 ws-icon-default = " "
 
@@ -297,18 +367,18 @@ label-discharging = " %percentage%%"
 format-discharging-foreground = ${colors.foreground}
 label-discharging-foreground = ${colors.foreground}
 
-format-full-prefix = "  "
+format-full-prefix = ""
 format-foreground = ${colors.color4}
 format-background = #2b2f37
 format-full-prefix-foreground = #A0E8A2
 format-full-foreground = ${colors.foreground}
 format-full-background = ${colors.background}
 
-ramp-capacity-0 = " "
-ramp-capacity-1 = " "
-ramp-capacity-2 = " "
-ramp-capacity-3 = " "
-ramp-capacity-4 = " "
+ramp-capacity-0 = ""
+ramp-capacity-1 = ""
+ramp-capacity-2 = ""
+ramp-capacity-3 = ""
+ramp-capacity-4 = ""
 ramp-capacity-foreground = #A0E8A2
 
 animation-charging-0 = "" 
@@ -380,6 +450,22 @@ format-prefix = " "
 format-prefix-foreground = #c1941a
 format-background = #2b2f37
 label = %date% %time%
+
+################################################################################
+
+[module/date-short]
+;https://github.com/jaagr/polybar/wiki/Module:-date
+type = internal/date
+; Seconds to sleep between updates
+interval = 10
+; See "http://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = %{A1:~/.config/polybar/scripts/calendar.sh --popup:}%d %b%%{A}
+time = "%{A1:~/.config/polybar/scripts/calendar.sh --popup:}%H:%M%{A}"
+format-prefix = " "
+format-prefix-foreground = #c1941a
+format-background = #2b2f37
+label = %time%
 
 #################################################################
 
@@ -779,7 +865,7 @@ label-disconnected-foreground = ${colors.foreground}
 type = internal/network
 interface = wlp0s20f3
 interval = 10
-label-connected = %essid%
+label-connected = %essid:5:5%
 
 format-connected = "<label-connected> "
 ;format-connected = <ramp-signal> <label-connected>
