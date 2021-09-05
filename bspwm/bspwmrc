@@ -1,8 +1,8 @@
 #!/bin/sh
 
+setxkbmap -option compose:ralt
 if lspci | grep -q "GeForce GTX 1070"; then
   ~/.screenlayout/home-dock.lt.sh
-  setxkbmap -option compose:ralt
   bspc monitor DP-2 -d I II III IV V
   bspc monitor HDMI-0 -d VI VII VIII IX X
   pkill sxhkd; sxhkd -c ~/.config/sxhkd/sxhkdrc-dock &
@@ -57,7 +57,7 @@ else
   bspc rule -a Firefox:Navigator desktop='^1' follow=off state=tiled focus=off
   bspc rule -a Firefox:Places desktop='^1' follow=off state=floating focus=off
   bspc rule -a Firefox:Firefox desktop='^1' follow=off state=floating focus=off
-  bspc rule -a Thunderbird desktop='^1' follow=off state=tiled focus=off
+  bspc rule -a Thunderbird desktop='^3' follow=off state=tiled focus=off
   bspc rule -a Thunderbird:Calendar state=floating focus=on
   bspc rule -a Slack desktop='^5' state=tiled focus=off
   bspc rule -a TelegramDesktop desktop='^7' follow=off state=floating focus=off
