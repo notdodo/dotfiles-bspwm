@@ -961,11 +961,11 @@ label = %output%
 [module/agenda]
 type = custom/script
 ; Show the next event and forget cache automatically every 60 minutes
-exec = python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -c ~/.config/i3-agenda/client_secret_1029722840018-nfoqs1u2pvtd67l73bv93kt1639ojehd.apps.googleusercontent.com.json -ttl 10
+exec = python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -c ~/.config/i3-agenda/client_secret.json -ttl 10
 ; left click to launch Google Calendar
 click-left = firefox https://calendar.google.com/calendar/u/0/r
 ; right click force update the cache, if for example you just added a new event
-click-right = notify-send "syncing..." && python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -c ~/.config/i3-agenda/client_secret_1029722840018-nfoqs1u2pvtd67l73bv93kt1639ojehd.apps.googleusercontent.com.json --update && notify-send -t 2000 "sync finished"
+click-right = notify-send "syncing..." && python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -c ~/.config/i3-agenda/client_secret.json --update && notify-send -t 2000 "sync finished"
 interval = 60
 label = %{F#61afef}%{F-} %{T5}%output%%{T-}
 
