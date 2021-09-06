@@ -367,7 +367,7 @@ label-discharging = " %percentage%%"
 format-discharging-foreground = ${colors.foreground}
 label-discharging-foreground = ${colors.foreground}
 
-format-full-prefix = ""
+format-full-prefix = "  "
 format-foreground = ${colors.color4}
 format-background = #2b2f37
 format-full-prefix-foreground = #A0E8A2
