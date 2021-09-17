@@ -652,8 +652,8 @@ label = %output%
 [module/agenda-ipc]
 type = custom/ipc
 hook-0 = python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -cd ~/.config/i3-agenda/ -c ~/.config/i3-agenda/client_secret.json --skip $(cat ~/.config/i3-agenda/i3-agenda-skip.tmp || echo 0)
-hook-1 = ~/.config/polybar/scripts/i3agenda-onscroll.sh down && python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -cd ~/.config/i3-agenda/ -c ~/.config/i3-agenda/client_secret.json --update --skip $(cat ~/.config/i3-agenda/i3-agenda-skip.tmp || echo 0)
-hook-2 = ~/.config/polybar/scripts/i3agenda-onscroll.sh up && python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -cd ~/.config/i3-agenda/ -c ~/.config/i3-agenda/client_secret.json --update --skip $(cat ~/.config/i3-agenda/i3-agenda-skip.tmp || echo 0)
+hook-1 = ~/.config/polybar/scripts/i3agenda-onscroll.sh down && python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -cd ~/.config/i3-agenda/ -c ~/.config/i3-agenda/client_secret.json --skip $(cat ~/.config/i3-agenda/i3-agenda-skip.tmp || echo 0)
+hook-2 = ~/.config/polybar/scripts/i3agenda-onscroll.sh up && python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -cd ~/.config/i3-agenda/ -c ~/.config/i3-agenda/client_secret.json --skip $(cat ~/.config/i3-agenda/i3-agenda-skip.tmp || echo 0)
 format = %{F#61afef}%{F-} %{T5}<output>%{T-}
 ; left click to launch Google Calendar
 click-left = firefox https://calendar.google.com/calendar/u/0/r
