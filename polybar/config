@@ -157,7 +157,7 @@ font-3 = unifont:fontformat=truetype:size=13:antialias=true;
 font-4 = JetBrainsMonoNL Nerd Font:size=10;2
 
 modules-left = round-left bspwm round-right
-modules-center = agenda
+modules-center = agenda agenda-ipc
 modules-right = round-left spotify round-right padding1 round-left cpu1 round-right memory1
 
 ;tray-detached = false
@@ -831,7 +831,7 @@ tail = true
 [module/wired-network]
 ;https://github.com/jaagr/polybar/wiki/Module:-network
 type = internal/network
-interface = ens1
+interface = enp0s31f6
 interval = 3.0
 
 ; Available tokens:
@@ -958,16 +958,26 @@ label = %output%
 
 ###############################################################################
 
-[module/agenda]
-type = custom/script
-; Show the next event and forget cache automatically every 60 minutes
-exec = python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -c ~/.config/i3-agenda/client_secret.json -ttl 10
+[module/agenda-ipc]
+type = custom/ipc
+hook-0 = python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -cd ~/.config/i3-agenda/ -c ~/.config/i3-agenda/client_secret.json --skip $(cat ~/.config/i3-agenda/i3-agenda-skip.tmp || echo 0)
+hook-1 = ~/.config/polybar/scripts/i3agenda-onscroll.sh down && python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -cd ~/.config/i3-agenda/ -c ~/.config/i3-agenda/client_secret.json --update --skip $(cat ~/.config/i3-agenda/i3-agenda-skip.tmp || echo 0)
+hook-2 = ~/.config/polybar/scripts/i3agenda-onscroll.sh up && python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -cd ~/.config/i3-agenda/ -c ~/.config/i3-agenda/client_secret.json --update --skip $(cat ~/.config/i3-agenda/i3-agenda-skip.tmp || echo 0)
+format = %{F#61afef}%{F-} %{T5}<output>%{T-}
 ; left click to launch Google Calendar
 click-left = firefox https://calendar.google.com/calendar/u/0/r
 ; right click force update the cache, if for example you just added a new event
-click-right = notify-send "syncing..." && python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -c ~/.config/i3-agenda/client_secret.json --update && notify-send -t 2000 "sync finished"
-interval = 60
-label = %{F#61afef}%{F-} %{T5}%output%%{T-}
+click-right = rm ~/.config/i3-agenda/i3-agenda-skip.tmp; python3 ~/.config/i3-agenda/i3-agenda-src/i3_agenda/__init__.py -cd ~/.config/i3-agenda/ -c ~/.config/i3-agenda/client_secret.json --update && notify-send "i3-agenda" "Sync completed"
+; show the previous event
+scroll-down = polybar-msg hook agenda-ipc 2
+; show the next event
+scroll-up = polybar-msg hook agenda-ipc 3
+
+[module/agenda]
+type = custom/script
+interval = 900
+exec = polybar-msg hook agenda-ipc 1
+label = 
 
 ###############################################################################
 

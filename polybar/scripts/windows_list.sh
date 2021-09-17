@@ -65,8 +65,6 @@ parse_windows() {
         wname=" ${wname}" ;;
       "Nemo"|"Pcmanfm"|"Thunar"|"dolphin" )
         wname=" ${wname// - File Manager/}" ;;
-      "Popcorn-Time" )
-        wname=" ${wname}" ;;
       "rdesktop"|"org.remmina.Remmina"|"Remote-viewer" )
         wname=" ${wname//- Remote Viewer/}";;
       "Slack" )

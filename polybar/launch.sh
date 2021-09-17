@@ -10,5 +10,5 @@ if lspci | grep -q "GeForce GTX 1070"; then
   polybar mainbar-bspwm >>/tmp/polybar1.log 2>&1 & disown
   polybar mainbar-bspwm-extra >>/tmp/polybar2.log 2>&1 & disown
 else
-  polybar mainbar-bspwm-nodock >>/tmp/polybar1.lg 2>&1 & disown
+  polybar mainbar-bspwm-nodock >>/tmp/polybar1.log 2>&1 & disown
 fi
