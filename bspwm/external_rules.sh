@@ -3,10 +3,13 @@ window_id="$1"
 window_class="$2"
 window_instance="$3"
 consequences="$4"
-window_title="$(xwininfo -id "$window_id" | sed ' /^xwininfo/!d ; s,.*"\(.*\)".*,\1,')"
 
 main() {
   case "$window_class" in
+    "Thunderbird")
+      window_title="$(xwininfo -id "$window_id")"
+      [[ $window_title == *"Empty "* ]] &&  echo "state=floating"
+      ;;
     "yakuake")
       xdotool windowmove $window_id -- -2000 0
       ;;
@@ -32,7 +35,6 @@ main() {
 main
 
 echo "window_id: $1" >> /tmp/.rules_cmd.log
-echo "window_title: $window_title" >> /tmp/.rules_cmd.log
 echo "window_class: $window_class" >> /tmp/.rules_cmd.log
 echo "window_instance: $window_instance" >> /tmp/.rules_cmd.log
 echo "consequences: $4" >> /tmp/.rules_cmd.log
