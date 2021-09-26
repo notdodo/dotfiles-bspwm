@@ -520,9 +520,9 @@ format-foreground = ${colors.foreground}
 format-background = ${colors.background}
 format-padding = 2
 ;format-prefix-foreground = #0f0
-label = %{T5}%output:0:150%%{T-}
-scroll-up = bspc node -f prev.local
+label = %{T5}%output%%{T5}
 scroll-down = bspc node -f prev.local
+scroll-up = bspc node -f next.local
 
 ################################################################################
 
@@ -666,9 +666,8 @@ scroll-up = polybar-msg hook agenda-ipc 3
 
 [module/agenda]
 type = custom/script
-interval = 900
-exec = polybar-msg hook agenda-ipc 1
-exec-if = ping -c1 google.com
+interval = 500
+exec = sleep 5; polybar-msg hook agenda-ipc 1
 label = 
 
 ###############################################################################

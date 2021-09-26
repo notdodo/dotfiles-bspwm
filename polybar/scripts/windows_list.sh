@@ -37,7 +37,7 @@ parse_windows() {
     case "${wclass[2]}" in
       "Autopsy" )
         wname=" ${wname}" ;;
-      "burp-StartBurp" )
+      "burp-StartBurp"| "install4j-burp-StartBurp" )
         wname=" ${wname}" ;;
       "Chromium"*|"Google-chrome")
         wname=" ${wname// - Google Chrome}" ;;
@@ -109,10 +109,10 @@ parse_windows() {
     esac
   
     # Default: click with middle click
-    wname="%{A2:kill -3 ${wpid}:}${wname:0:${max_length}}%{A}"
+    wname="%{A2:a:}${wname:0:${max_length}}%{A}"
   
     if [[ "${wid}" == "${FOCUSED}" ]]; then
-      win="$(printf "%s" "%{F#2ECC71}${wname}%{F-}")"
+      win="$(printf "%s" "%{F#2ECC71}${wname}%{F}")"
     else
       win="%{A1:bspc node -f ${wid}:}${wname}%{A}"
     fi
@@ -120,12 +120,12 @@ parse_windows() {
   done
 }
 
-parse_windows 10
+parse_windows 150
 #Result
 if [[ ${#windowlist} -gt 300 ]]; then
-  parse_windows 5
+  parse_windows 20
 fi
 if [[ ${#windowlist} -gt 400 ]]; then
-  parse_windows 3
+  parse_windows 10
 fi
 echo "${windowlist}"

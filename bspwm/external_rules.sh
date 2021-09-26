@@ -34,7 +34,7 @@ main() {
 
 main
 
-echo "window_id: $1" >> /tmp/.rules_cmd.log
-echo "window_class: $window_class" >> /tmp/.rules_cmd.log
-echo "window_instance: $window_instance" >> /tmp/.rules_cmd.log
-echo "consequences: $4" >> /tmp/.rules_cmd.log
+#echo "window_id: $1" >> /tmp/.rules_cmd.log
+#echo "window_class: $window_class" >> /tmp/.rules_cmd.log
+#echo "window_instance: $window_instance" >> /tmp/.rules_cmd.log
+#echo "consequences: $4" >> /tmp/.rules_cmd.log
