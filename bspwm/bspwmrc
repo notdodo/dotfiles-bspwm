@@ -11,6 +11,7 @@ else
   pkill sxhkd; sxhkd -c ~/.config/sxhkd/sxhkdrc-nodock &
 fi
 
+xautolock -time 15 -locker ~/.config/i3lock/lock.sh -detectsleep &
 pkill dunst; dunst &
 
 #autostart apps

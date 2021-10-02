@@ -203,3 +203,8 @@ background = "#1e222a"
 foreground = "#abb2bf"
 frame_color = "#e06c75"
 timeout = 0
+
+[google_chrome_share]
+  desktop_entry = "google-chrome"
+  summary = "*presentando*"
+  skip_display = true
