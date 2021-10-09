@@ -1,5 +1,5 @@
 configuration {
-      modi: "drun,clipboard:greenclip print,window,filebrowser";
+      modi: "drun,clipboard:greenclip print,window,filebrowser,run";
       location: 0;
       font: "JetBrainsMonoNL Nerd Font 11";
 /*      yoffset: 0;*/
@@ -42,7 +42,6 @@ configuration {
 /*      scroll-method: 0;*/
 /*      window-format: "{w}    {c}   {t}";*/
 /*      click-to-exit: true;*/
-      theme: "~/.config/rofi/darcula.rasi";
 /*      max-history-size: 25;*/
 /*      combi-hide-mode-prefix: false;*/
 /*      matching-negate-char: '-' /* unsupported */;*/
@@ -147,3 +146,5 @@ configuration {
     sorting-method:    "name";
   }
 }
+
+@theme "~/.config/rofi/darcula.rasi"
