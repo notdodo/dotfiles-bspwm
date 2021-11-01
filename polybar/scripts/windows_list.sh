@@ -38,8 +38,9 @@ parse_windows() {
       "Autopsy" )
         wname=" ${wname}" ;;
       "burp-StartBurp"| "install4j-burp-StartBurp" )
-        wname=" ${wname}" ;;
-      "Chromium"*|"Google-chrome")
+        wname=" ${wname// - licensed to Prima Assicurazioni S.p.A \[single user license\]/}"
+        wname="${wname// Professional v20[0-9]*.[0-9]*.[0-9]/}" ;;
+      "Chromium"|"Google-chrome")
         wname=" ${wname// - Google Chrome}" ;;
       "Firefox" )
         if test "${wname_complete#*$private}" != "${wname_complete}"; then
@@ -65,7 +66,9 @@ parse_windows() {
         wname=" ${wname}" ;;
       "Nemo"|"Pcmanfm"|"Thunar"|"dolphin" )
         wname=" ${wname// - File Manager/}" ;;
-      "rdesktop"|"org.remmina.Remmina"|"Remote-viewer" )
+      "obsidian")
+        wname=" ${wname// - Obsidian v[0-9]*.[0-9]*.[0-9]*/}" ;;
+      "rdesktop"|"org.remmina.Remmina"|"Remote-viewer"|"krdc" )
         wname=" ${wname//- Remote Viewer/}";;
       "Slack" )
         wname=" ${wname}" ;;
@@ -82,7 +85,7 @@ parse_windows() {
         wname="${wname//sudo /}" ;;
       "Thunderbird" )
         wname=" ${wname// - Mozilla Thunderbird/}" ;;
-      "Transmission-gtk" )
+      "Transmission-gtk"|"transmission" )
         wname=" ${wname}" ;;
       "vlc"|"mpv" )
         wname=" ${wname}" ;;
@@ -96,15 +99,22 @@ parse_windows() {
         wname=" ${wname}" ;;
       *)
         case "${wclass[1]}" in
-          "chromium" )
-            wname=" ${wname}" ;;
+          "chromium"* )
+            wname=" ${wname// - Chromium/}" ;;
           "guake" )
             wname="$(isVim "${wname_complete}" "${wname}")" ;;
           "VirtualBox" )
             wname=" ${wname}" ;;
           # Print the class, helps to make a new entry
           *)
-            wname=" $wname ${wclass[2]} ${wclass[1]}" ;;
+            case "${wname}" in
+              "meet.google.com is sharing a window." )
+                wname="" ;;
+              "yad-calendar" )
+                wname=" Calendar" ;;
+              *)
+                wname=" $wname ${wclass[2]} ${wclass[1]}" ;;
+            esac
         esac
     esac
   
@@ -120,7 +130,7 @@ parse_windows() {
   done
 }
 
-parse_windows 150
+parse_windows 30
 #Result
 if [[ ${#windowlist} -gt 300 ]]; then
   parse_windows 20
