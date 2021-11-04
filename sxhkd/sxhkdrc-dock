@@ -1,6 +1,6 @@
 # terminal emulator
 super + Return
-        konsole
+	konsole
 
 # program launcher
 super + @space
@@ -12,11 +12,15 @@ super + Escape
 
 # clipboard
 super + {apostrophe}
-        rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+    rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
+
+# bluetooth
+super + b
+	~/.config/rofi/rofi-bluetooth/rofi-bluetooth
 
 # lock screen
 super + p
-        ~/.config/i3lock/lock.sh
+    ~/.config/i3lock/lock.sh
 #
 # bspwm hotkeys
 #
@@ -122,24 +126,17 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
-
-Print
-	sleep 1 && /usr/bin/scrot -s ~/Pictures/scrots/'scrot_%Y%m%d-%H%M%S_$wx$h.png' -e 'printf $f|xclip'
-
-shift + Print
-	sleep 1 && /usr/bin/scrot -s ~/Pictures/scrots/'scrot_%Y%m%d-%H%M%S_$wx$h.png' -e 'curl -F c=@$f https://ptpb.pw/?u=1|xclip'
-
-ctrl + shift + Print
-	sleep 1 && /usr/bin/scrot ~/Pictures/scrots/'scrot_%Y%m%d-%H%M%S_$wx$h.png' -e 'printf $f|xclip'
-
-mode_switch + Print
-	sleep 1 && /usr/bin/scrot -s ~/Pictures/scrots/'scrot_%Y%m%d-%H%M%S_$wx$h.png' -e 'lp -d Lexmark_International_Lexmark_CS317dn_ -o fit-to-page -o media=A4 $f'
-
-XF86Calculator
-	bluetooth-autoconnect
-
 ## Media Keys
 
 # media control
 XF86Audio{Next,Prev,Play,Stop}
     playerctl {next,previous,play-pause,stop}
+
+XF86AudioMute
+    pactl set-sink-mute $(pactl info |rg -o 'Default Sink: (.*)' -r '$1') toggle
+
+XF86AudioRaiseVolume
+    pactl set-sink-volume $(pactl info |rg -o 'Default Sink: (.*)' -r '$1') +5%
+
+XF86AudioLowerVolume
+    pactl set-sink-volume $(pactl info |rg -o 'Default Sink: (.*)' -r '$1') -5%
