@@ -1,11 +1,19 @@
 #!/bin/sh
 
 setxkbmap -option compose:ralt
-if lspci | grep -q "GeForce GTX 1070"; then
-  ~/.screenlayout/home-dock.lt.sh
-  bspc monitor DP-2 -d I II III IV V
-  bspc monitor HDMI-0 -d VI VII VIII IX X
-  pkill sxhkd; sxhkd -c ~/.config/sxhkd/sxhkdrc-dock &
+#if lspci | grep -q "GeForce GTX 1070"; then
+if lspci | grep -q "GeForce GTX 1070" || xrandr | grep -q "HDMI-2 connected"; then
+  if xrandr | grep -a "HDMI-2 connected"; then
+    ~/.screenlayout/office-nodock.sh
+    bspc monitor eDP-1 -d I II III IV V
+    bspc monitor HDMI-2 -d VI VII VIII IX X
+    pkill sxhkd; sxhkd -c ~/.config/sxhkd/sxhkdrc-nodock &
+  else
+    ~/.screenlayout/home-dock.lt.sh
+    bspc monitor DP-2 -d I II III IV V
+    bspc monitor HDMI-0 -d VI VII VIII IX X
+    pkill sxhkd; sxhkd -c ~/.config/sxhkd/sxhkdrc-dock &
+  fi
 else
   bspc monitor eDP-1 -d I II III IV V VI VII VIII IX X
   pkill sxhkd; sxhkd -c ~/.config/sxhkd/sxhkdrc-nodock &

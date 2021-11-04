@@ -9,6 +9,8 @@ main() {
     "Thunderbird")
       window_title="$(xwininfo -id "$window_id")"
       [[ $window_title == *"Empty "* ]] &&  echo "state=floating"
+      [[ $window_title == *"Check Spelling"* ]] &&  echo "state=floating"
+      [[ $window_title == *"Save Message"* ]] &&  echo "state=floating"
       ;;
     "yakuake")
       xdotool windowmove $window_id -- -2000 0
