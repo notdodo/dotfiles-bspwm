@@ -4,7 +4,7 @@ BSPWM &amp; Co. configuration
 ![](https://user-images.githubusercontent.com/6991986/132102967-2040cb97-5e43-49f7-8a02-0a332830f3b0.png)
 ![](https://user-images.githubusercontent.com/6991986/132103136-c1df6666-dd08-4547-9ab8-31a6ae5a4ff2.png)
 
-Most of the configuration is a copy/paste of <https://github.com/siduck76/dotfiles>.
+Most of the polybar configuration is a copy/paste of <https://github.com/siduck76/dotfiles>.
 
 ## Requirements
 
