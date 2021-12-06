@@ -15,8 +15,12 @@ super + {apostrophe}
     rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 
 # bluetooth
-super + b
+super + shift + b
     ~/.config/rofi/rofi-bluetooth/rofi-bluetooth
+
+# network manager
+super + shift + n
+    ~/.config/networkmanager-dmenu/networkmanager_dmenu
 
 # lock screen
 super + p
@@ -126,6 +130,10 @@ super + alt + shift + {h,j,k,l}
 super + {Left,Down,Up,Right}
     bspc node -v {-20 0,0 20,0 -20,20 0}
 
+# Rotate windows tree
+super + shift + {comma,period}
+    bspc node @/ -C {forward,backward}
+
 ## Media Keys
 
 # media control
@@ -140,3 +148,15 @@ XF86AudioRaiseVolume
 
 XF86AudioLowerVolume
     pactl set-sink-volume $(pactl info |rg -o 'Default Sink: (.*)' -r '$1') -5%
+
+XF86MonBrightnessUp
+    MAXB=$(cat /sys/class/backlight/intel_backlight/max_brightness); \
+    ACTB=$(cat /sys/class/backlight/intel_backlight/brightness); \
+    STEP=$(( MAXB*5/100 )); \
+    echo $(( ACTB+STEP )) > /sys/class/backlight/intel_backlight/brightness
+
+XF86MonBrightnessDown
+    MAXB=$(cat /sys/class/backlight/intel_backlight/max_brightness); \
+    ACTB=$(cat /sys/class/backlight/intel_backlight/brightness); \
+    STEP=$(( MAXB*5/100 )); \
+    echo $(( ACTB-STEP )) > /sys/class/backlight/intel_backlight/brightness
