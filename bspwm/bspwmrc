@@ -55,6 +55,7 @@ if lspci | grep -q "GeForce GTX 1070"; then
   bspc rule -a Firefox:Places desktop='^6' follow=off state=floating focus=off
   bspc rule -a Firefox:Firefox desktop='^6' follow=off state=floating focus=off
   bspc rule -a Thunderbird desktop='^8' follow=off state=tiled focus=off
+  bspc rule -a Mailspring desktop='^8' follow=off state=tiled focus=off
   bspc rule -a Slack desktop='^10' state=tiled focus=off
   bspc rule -a TelegramDesktop desktop='^2' follow=off state=floating focus=off
   bspc rule -a obsidian desktop='^9' follow=on focus=on state=tiled
@@ -67,6 +68,7 @@ else
   bspc rule -a Firefox:Places desktop='^1' follow=off state=floating focus=off
   bspc rule -a Firefox:Firefox desktop='^1' follow=off state=floating focus=off
   bspc rule -a Thunderbird desktop='^3' follow=off state=tiled focus=off
+  bspc rule -a Mailspring desktop='^3' follow=off state=tiled focus=off
   bspc rule -a Slack desktop='^5' state=tiled focus=off
   bspc rule -a TelegramDesktop desktop='^7' follow=off state=floating focus=off
   bspc rule -a obsidian desktop='^4' follow=on focus=on state=tiled
