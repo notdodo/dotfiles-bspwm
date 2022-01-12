@@ -313,7 +313,7 @@
 
 [google_chrome_share]
   desktop_entry = "google-chrome"
-  summary = "*presentando*"
+  summary = "*presenting*"
   skip_display = true
 
 # Every section that isn't one of the above is interpreted as a rules to
