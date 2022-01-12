@@ -12,9 +12,11 @@ if lspci | grep -q "GeForce GTX 1070" || xrandr | grep -q "HDMI-2 connected"; th
     bspc monitor HDMI-0 -d VI VII VIII IX X
   fi
   pkill sxhkd; sxhkd -c ~/.config/sxhkd/sxhkdrc-dock &
+  ln -sf ~/.config/dunst/dunstrc-dock ~/.config/dunst/dunstrc
 else
   bspc monitor eDP-1 -d I II III IV V VI VII VIII IX X
   pkill sxhkd; sxhkd -c ~/.config/sxhkd/sxhkdrc-nodock &
+  ln -sf ~/.config/dunst/dunstrc-nodock ~/.config/dunst/dunstrc
 fi
 
 xautolock -time 15 -locker ~/.config/i3lock/lock.sh -detectsleep &
