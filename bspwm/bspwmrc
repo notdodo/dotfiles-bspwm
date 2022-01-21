@@ -1,6 +1,7 @@
 #!/bin/sh
 
 setxkbmap -option compose:ralt
+setxkbmap -option compose:rwin
 if lspci | grep -q "GeForce GTX 1070" || xrandr | grep -q "HDMI-2 connected"; then
   if xrandr | grep -q "HDMI-2 connected"; then
     ~/.screenlayout/office-nodock.sh
@@ -23,7 +24,8 @@ xautolock -time 15 -locker ~/.config/i3lock/lock.sh -detectsleep &
 pkill dunst; dunst &
 
 #autostart apps
-picom -b --config ~/.config/picom/picom.conf
+pkill picom; sleep 1; picom -b --config ~/.config/picom/picom.conf
+pkill redshift; redshift -c ~/.config/redshift.conf &
 feh --bg-fill ~/Documents/Personal/private-configs/wallpapers/mywall.png
 
 # BSPWM
