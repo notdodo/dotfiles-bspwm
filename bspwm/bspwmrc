@@ -1,7 +1,5 @@
 #!/bin/sh
 
-setxkbmap -option compose:ralt
-setxkbmap -option compose:rwin
 if lspci | grep -q "GeForce GTX 1070" || xrandr | grep -q "HDMI-2 connected"; then
   if xrandr | grep -q "HDMI-2 connected"; then
     ~/.screenlayout/office-nodock.sh
@@ -22,10 +20,7 @@ fi
 
 xautolock -time 15 -locker ~/.config/i3lock/lock.sh -detectsleep &
 pkill dunst; dunst &
-
-#autostart apps
-pkill picom; sleep 1; picom -b --config ~/.config/picom/picom.conf
-pkill redshift; redshift -c ~/.config/redshift.conf &
+pkill picom; picom -b --config ~/.config/picom/picom.conf
 feh --bg-fill ~/Documents/Personal/private-configs/wallpapers/mywall.png
 
 # BSPWM
@@ -48,13 +43,9 @@ bspc config automatic_scheme 		longest_side
 
 bspc config external_rules_command ~/.config/bspwm/external_rules.sh
 
-bspc rule -a pavucontrol-qt state=tiled
-bspc rule -a yakuake sticky=on state=floating layer=above
-bspc rule -a Yad sticky=on state=floating layer=above
-bspc rule -a Thunderbird:Calendar state=floating focus=on
-
 if lspci | grep -q "GeForce GTX 1070"; then
   bspc desktop "^6" -l monocle
+  bspc desktop "^8" -l monocle
   bspc rule -a Firefox:Navigator desktop='^6' follow=off state=tiled focus=off
   bspc rule -a Firefox:Places desktop='^6' follow=off state=floating focus=off
   bspc rule -a Firefox:Firefox desktop='^6' follow=off state=floating focus=off
@@ -68,12 +59,13 @@ if lspci | grep -q "GeForce GTX 1070"; then
   bspc rule -a 'VirtualBox Manager':'VirtualBox Manager' desktop='^5' state=floating
 else
   bspc desktop "^1" -l monocle
+  bspc desktop "^5" -l monocle
   bspc rule -a Firefox:Navigator desktop='^1' follow=off state=tiled focus=off
   bspc rule -a Firefox:Places desktop='^1' follow=off state=floating focus=off
   bspc rule -a Firefox:Firefox desktop='^1' follow=off state=floating focus=off
   bspc rule -a Thunderbird desktop='^3' follow=off state=tiled focus=off
   bspc rule -a Mailspring desktop='^3' follow=off state=tiled focus=off
-  bspc rule -a Slack desktop='^5' state=tiled focus=off
+  bspc rule -a Slack desktop='^5' focus=off
   bspc rule -a TelegramDesktop desktop='^7' follow=off state=floating focus=off
   bspc rule -a obsidian desktop='^4' follow=on focus=on state=tiled
   bspc rule -a dolphin desktop='^8' follow=on focus=on state=tiled
@@ -81,6 +73,15 @@ else
   bspc rule -a 'VirtualBox Manager':'VirtualBox Manager' desktop='^10' state=floating
 fi
 
+bspc rule -a pavucontrol-qt state=tiled
+bspc rule -a yakuake sticky=on state=floating layer=above
+bspc rule -a Yad sticky=on state=floating layer=above
+bspc rule -a Thunderbird:Calendar state=floating focus=on
+
 ~/.config/polybar/launch.sh &
-yakuake &
 wmname LG3D
+/usr/share/libpam-kwallet-common/pam_kwallet_init &
+setxkbmap -option compose:ralt
+setxkbmap -option compose:rwin
+xdg-settings set default-web-browser firefox.desktop
+yakuake &
