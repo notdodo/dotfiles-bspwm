@@ -8,13 +8,12 @@ main() {
   case "$window_class" in
     "Thunderbird")
       window_title="$(xwininfo -id "$window_id")"
-      [[ $window_title == *"Empty "* ]] &&  echo "state=floating"
-      [[ $window_title == *"Check Spelling"* ]] &&  echo "state=floating"
-      [[ $window_title == *"Save Message"* ]] &&  echo "state=floating"
+      [[ $window_title == *"Empty "* ]] && echo "state=floating"
+      [[ $window_title == *"Check Spelling"* ]] && echo "state=floating"
+      [[ $window_title == *"Save Message"* ]] && echo "state=floating"
       ;;
     "yakuake")
-      xdotool windowmove $window_id -- -2000 0
-      xdo activate -n yakuake
+      xdotool windowmove $window_id -- -2000 0 && xdo activate -n yakuake
       ;;
     "Spotify")
       if lspci | grep -q "GeForce GTX 1070"; then
@@ -24,14 +23,14 @@ main() {
       fi
       ;;
     "")
-      sleep 0.5
+      sleep 0.3
       window_class=$(xprop -id $window_id | grep "WM_CLASS" | sed 's/.*"\(.*\)"/\1/g' ) 
       window_instance="${window_class,,}"
       [[ -n "$window_class" ]] && main
       ;;
-    *)
-      echo "Nothing found... $1  $2  $3  $4"
-      ;;
+    #*)
+    #  echo "Nothing found... $1  $2  $3  $4"
+    #  ;;
   esac
 }
 
