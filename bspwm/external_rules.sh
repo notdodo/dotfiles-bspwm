@@ -13,7 +13,8 @@ main() {
       [[ $window_title == *"Save Message"* ]] && echo "state=floating"
       ;;
     "yakuake")
-      xdotool windowmove $window_id -- -2000 0 && xdo activate -n yakuake
+      xdotool windowmove $window_id -- -2000 0
+      xdo activate -n yakuake
       ;;
     "Spotify")
       if lspci | grep -q "GeForce GTX 1070"; then
