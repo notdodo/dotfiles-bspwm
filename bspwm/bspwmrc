@@ -75,7 +75,6 @@ bspc rule -a yakuake sticky=on state=floating layer=above
 bspc rule -a Yad sticky=on state=floating layer=above
 bspc rule -a Thunderbird:Calendar state=floating focus=on
 
-/usr/share/libpam-kwallet-common/pam_kwallet_init &
 xautolock -time 15 -locker ~/.config/i3lock/lock.sh -detectsleep &
 pkill dunst
 dunst &
@@ -87,4 +86,5 @@ wmname LG3D
 setxkbmap -option compose:ralt
 setxkbmap -option compose:rwin
 xdg-settings set default-web-browser firefox.desktop
+/usr/share/libpam-kwallet-common/pam_kwallet_init &
 yakuake &

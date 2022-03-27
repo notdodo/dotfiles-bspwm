@@ -83,7 +83,7 @@ parse_windows() {
       "Terminator"|"XTerm"|"konsole"|"yakuake" )
         wname="$(isVim "${wname_complete}" "${wname}")"
         wname="${wname//sudo /}" ;;
-      "Thunderbird" )
+      "Thunderbird"|"Mailspring" )
         wname=" ${wname// - Mozilla Thunderbird/}" ;;
       "Transmission-gtk"|"transmission" )
         wname=" ${wname}" ;;
@@ -93,7 +93,7 @@ parse_windows() {
         wname=" ${wname}" ;;
       "VirtualBox" )
         wname=" ${wname}" ;;
-      "Zathura" )
+      "Zathura"|"okular" )
         wname=" $(basename ${wname})" ;;
       "zoom" )
         wname=" ${wname}" ;;
@@ -101,8 +101,12 @@ parse_windows() {
         case "${wclass[1]}" in
           "chromium"* )
             wname=" ${wname// - Chromium/}" ;;
+          "neo4j"* )
+            wname=" ${wname}" ;;
           "guake" )
             wname="$(isVim "${wname_complete}" "${wname}")" ;;
+          "qemu")
+            wname=" ${wname}" ;;
           "VirtualBox" )
             wname=" ${wname}" ;;
           # Print the class, helps to make a new entry

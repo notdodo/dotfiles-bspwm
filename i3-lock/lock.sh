@@ -15,7 +15,7 @@ maim $TMPBG && convert $TMPBG -scale 5% -scale 2000% -draw "fill black fill-opac
 i3lock \
   -i $TMPBG \
   --time-pos="x+100:h-100" \
-  --date-pos="x+110:h-80" \
+  --date-pos="x+100:h-80" \
   --clock --date-str="%A %d %B" \
   --line-uses-inside \
   --keyhl-color="1976D2FF" --bshl-color=d23c3dff --separator-color=00000000 \
