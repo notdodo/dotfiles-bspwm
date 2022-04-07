@@ -44,9 +44,6 @@ function autostartApps() {
   picom -b --config ~/.config/picom/picom.conf
   feh --bg-fill ~/Documents/Personal/private-configs/wallpapers/mywall.png
   ~/.config/polybar/launch.sh &
-  setxkbmap -option compose:ralt
-  setxkbmap -option compose:rwin
-  xdg-settings set default-web-browser firefox.desktop
   /usr/share/libpam-kwallet-common/pam_kwallet_init &
   yakuake &
   sxhkd &
