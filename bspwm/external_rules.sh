@@ -6,6 +6,9 @@ consequences="$4"
 
 main() {
   case "$window_class" in
+    "firefox")
+      echo "desktop=^1"
+      ;;
     "Thunderbird")
       window_title="$(xwininfo -id "$window_id")"
       [[ $window_title == *"Empty "* ]] && echo "state=floating"
