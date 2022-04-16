@@ -6,9 +6,6 @@ consequences="$4"
 
 main() {
   case "$window_class" in
-    "firefox")
-      echo "desktop=^1"
-      ;;
     "Thunderbird")
       window_title="$(xwininfo -id "$window_id")"
       [[ $window_title == *"Empty "* ]] && echo "state=floating"
@@ -16,8 +13,8 @@ main() {
       [[ $window_title == *"Save Message"* ]] && echo "state=floating"
       ;;
     "yakuake")
-      xdotool windowmove $window_id -- -2000 0
-      xdo activate -n yakuake
+      xdotool windowmove $window_id -2000 0
+      xdotool windowactivate $window_id
       ;;
     "Spotify")
       if lspci | grep -q "GeForce GTX 1070"; then
