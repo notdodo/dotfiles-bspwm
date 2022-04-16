@@ -14,7 +14,7 @@ main() {
       ;;
     "yakuake")
       xdotool windowmove $window_id -2000 0
-      xdotool windowactivate $window_id
+      wmctrl -a yakuake
       ;;
     "Spotify")
       if lspci | grep -q "GeForce GTX 1070"; then
