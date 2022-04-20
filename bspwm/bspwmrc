@@ -17,6 +17,7 @@ function homeSetup() {
   sxhkd -c ~/.config/sxhkd/sxhkdrc-dock &
   ln -sf ~/.config/sxhkd/sxhkdrc-dock ~/.config/sxhkd/sxhkdrc
   ln -sf ~/.config/dunst/dunstrc-dock ~/.config/dunst/dunstrc
+  ln -sf ~/Documents/Personal/private-configs/wallpapers/arch.png ~/.background
 }
 
 function officeSetup() {
@@ -26,23 +27,26 @@ function officeSetup() {
   bspc monitor eDP-1 -d VI VII VIII IX X
   ln -sf ~/.config/sxhkd/sxhkdrc-dock ~/.config/sxhkd/sxhkdrc
   ln -sf ~/.config/dunst/dunstrc-dock ~/.config/dunst/dunstrc
+  ln -sf ~/Documents/Personal/private-configs/wallpapers/arch.png ~/.background
 }
 
 function standaloneSetup() {
   bspc monitor eDP-1 -d I II III IV V VI VII VIII IX X
   ln -sf ~/.config/sxhkd/sxhkdrc-nodock ~/.config/sxhkd/sxhkdrc
   ln -sf ~/.config/dunst/dunstrc-nodock ~/.config/dunst/dunstrc
+  ln -sf ~/Documents/Personal/private-configs/wallpapers/material-design-metal-colors-4k-n8.jpg ~/.background
 }
 
 function autostartApps() {
   xautolock -time 15 -locker ~/.config/i3lock/lock.sh -detectsleep &
+  xsettingsd &
   wmname LG3D
   pkill dunst
   pkill picom
   pkill sxhkd
   dunst &
   picom -b --config ~/.config/picom/picom.conf
-  feh --bg-fill ~/Documents/Personal/private-configs/wallpapers/mywall.png
+  feh --bg-fill ~/.background
   ~/.config/polybar/launch.sh &
   /usr/share/libpam-kwallet-common/pam_kwallet_init &
   yakuake &
@@ -59,7 +63,7 @@ fi
 
 # BSPWM
 bspc config focus_follows_pointer true
-bspc config top_padding 38
+bspc config top_padding 33
 bspc config normal_border_color "#282c34"
 bspc config border_width 2
 bspc config borderless_monocle true

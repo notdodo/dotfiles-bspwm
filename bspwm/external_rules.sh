@@ -24,7 +24,7 @@ main() {
       fi
       ;;
     "")
-      sleep 0.3
+      sleep 0.5
       window_class=$(xprop -id $window_id | grep "WM_CLASS" | sed 's/.*"\(.*\)"/\1/g' ) 
       window_instance="${window_class,,}"
       [[ -n "$window_class" ]] && main
