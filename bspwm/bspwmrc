@@ -25,8 +25,8 @@ function officeSetup() {
   bspc monitor DP-2 -d I II III IV V
   bspc monitor HDMI-2 -d I II III IV V
   bspc monitor eDP-1 -d VI VII VIII IX X
-  ln -sf ~/.config/sxhkd/sxhkdrc-dock ~/.config/sxhkd/sxhkdrc
-  ln -sf ~/.config/dunst/dunstrc-dock ~/.config/dunst/dunstrc
+  ln -sf ~/.config/sxhkd/sxhkdrc-nodock ~/.config/sxhkd/sxhkdrc
+  ln -sf ~/.config/dunst/dunstrc-nodock ~/.config/dunst/dunstrc
   ln -sf ~/Documents/Personal/private-configs/wallpapers/arch.png ~/.background
 }
 
