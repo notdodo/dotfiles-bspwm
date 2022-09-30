@@ -16,12 +16,13 @@ isVim () {
   fi
 }
 
+PRIVATE="(Private Browsing)"
+
 parse_windows() {
+  max_length="${1}"
   #Get WM_CLASS string from all IDs
   windowlist=""
-  private="(Private Browsing)"
   for wid in ${WINDOWS}; do
-    local max_length="${1}"
     #Get window's class, title/name and PID
     local info=$(xprop -id "${wid}" WM_NAME WM_CLASS _NET_WM_PID)
     wclass="$(echo "${info}" | rg WM_CLASS | cut -d "=" -f2 | sed -e 's/\"//g')"
@@ -37,12 +38,14 @@ parse_windows() {
     case "${wclass[2]}" in
       "Autopsy" )
         wname=" ${wname}" ;;
+      "BleachBit" )
+        wname=" ${wname}" ;;
       "burp-StartBurp"| "install4j-burp-StartBurp" )
         wname=" ${wname// - licensed to Prima Assicurazioni S.p.A \[single user license\]/}"
         wname="${wname// Professional v20[0-9]*.[0-9]*.[0-9]/}" ;;
       "Chromium"|"Google-chrome")
         wname=" ${wname// - Google Chrome}" ;;
-      "Firefox" )
+      "firefox" )
         if test "${wname_complete#*$private}" != "${wname_complete}"; then
           wname=" ${wname// — Mozilla Firefox/}"
         else
@@ -66,8 +69,10 @@ parse_windows() {
         wname=" ${wname}" ;;
       "Nemo"|"Pcmanfm"|"Thunar"|"dolphin" )
         wname=" ${wname// - File Manager/}" ;;
-      "obsidian")
+      "obsidian"|"notion-app")
         wname=" ${wname// - Obsidian v[0-9]*.[0-9]*.[0-9]*/}" ;;
+      "Portmaster" )
+        wname=" ${wname}" ;;
       "rdesktop"|"org.remmina.Remmina"|"Remote-viewer"|"krdc" )
         wname=" ${wname//- Remote Viewer/}";;
       "Slack" )
@@ -83,7 +88,7 @@ parse_windows() {
       "Terminator"|"XTerm"|"konsole"|"yakuake" )
         wname="$(isVim "${wname_complete}" "${wname}")"
         wname="${wname//sudo /}" ;;
-      "Thunderbird"|"Mailspring" )
+      "Thunderbird"|"Mailspring"|"thunderbird-default" )
         wname=" ${wname// - Mozilla Thunderbird/}" ;;
       "Transmission-gtk"|"transmission" )
         wname=" ${wname}" ;;

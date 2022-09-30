@@ -83,7 +83,7 @@ if EGPU; then
   bspc rule -a Firefox:Navigator desktop='^6' follow=off state=tiled focus=off
   bspc rule -a Firefox:Places desktop='^6' follow=off state=floating focus=off
   bspc rule -a Firefox:Firefox desktop='^6' follow=off state=floating focus=off
-  bspc rule -a Thunderbird desktop='^8' follow=off state=tiled focus=off
+  bspc rule -a thunderbird-default desktop='^8' follow=off state=tiled focus=off
   bspc rule -a Mailspring desktop='^8' follow=off state=tiled focus=off
   bspc rule -a Slack desktop='^10' state=tiled focus=off
   bspc rule -a TelegramDesktop desktop='^2' follow=off state=floating focus=off
@@ -96,7 +96,7 @@ else
   bspc rule -a Firefox:Navigator desktop='^1' follow=off state=tiled focus=off
   bspc rule -a Firefox:Places desktop='^1' follow=off state=floating focus=off
   bspc rule -a Firefox:Firefox desktop='^1' follow=off state=floating focus=off
-  bspc rule -a Thunderbird desktop='^3' follow=off state=tiled focus=off
+  bspc rule -a thunderbird-default desktop='^3' follow=off state=tiled focus=off
   bspc rule -a Mailspring desktop='^3' follow=off state=tiled focus=off
   bspc rule -a Slack desktop='^5' focus=off
   bspc rule -a TelegramDesktop desktop='^7' follow=off state=floating focus=off
@@ -109,6 +109,6 @@ fi
 bspc rule -a pavucontrol-qt state=tiled
 bspc rule -a yakuake sticky=on state=floating layer=above
 bspc rule -a Yad sticky=on state=floating layer=above
-bspc rule -a Thunderbird:Calendar state=floating focus=on
+bspc rule -a thunderbird-default:Calendar state=floating focus=on
 
 autostartApps
