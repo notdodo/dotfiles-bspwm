@@ -25,6 +25,11 @@ super + shift + n
 # lock screen
 super + p
     ~/.config/i3lock/lock.sh
+
+# Yubikey Account Manager
+super + shift + p
+    ~/.config/rofi/rofi-ykman/rofi-ykman
+
 #
 # bspwm hotkeys
 #
