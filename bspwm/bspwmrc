@@ -31,6 +31,7 @@ function officeSetup() {
 }
 
 function standaloneSetup() {
+  ~/.screenlayout/standalone.sh
   bspc monitor eDP-1 -d I II III IV V VI VII VIII IX X
   ln -sf ~/.config/sxhkd/sxhkdrc-nodock ~/.config/sxhkd/sxhkdrc
   ln -sf ~/.config/dunst/dunstrc-nodock ~/.config/dunst/dunstrc
