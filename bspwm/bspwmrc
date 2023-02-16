@@ -39,6 +39,7 @@ function standaloneSetup() {
 }
 
 function autostartApps() {
+  /usr/lib/x86_64-linux-gnu/libexec/polkit-kde-authentication-agent-1 &
   xautolock -time 15 -locker ~/.config/i3lock/lock.sh -detectsleep &
   xsettingsd &
   wmname LG3D
