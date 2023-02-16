@@ -1,0 +1,6 @@
+Host *
+  IdentityAgent ~/.1password/agent.sock
+
+Host k8s.thedodo.xyz
+  User ubuntu
+  IdentityFile ~/k.priv
