@@ -13,7 +13,7 @@ main() {
       [[ $window_title == *"Save Message"* ]] && echo "state=floating"
       ;;
     "yakuake")
-      xdotool windowmove $window_id -- -2000 0
+      xdotool windowmove --relative $window_id -2 0
       wmctrl -a Yakuake
       ;;
     "Spotify")
@@ -29,9 +29,6 @@ main() {
       window_instance="${window_class,,}"
       [[ -n "$window_class" ]] && main
       ;;
-    #*)
-    #  echo "Nothing found... $1  $2  $3  $4"
-    #  ;;
   esac
 }
 
