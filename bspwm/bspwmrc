@@ -10,6 +10,11 @@ function externalMonitor() {
   return $?
 }
 
+function externalMonitorDiMerda() {
+  xrandr | grep -q "HDMI-2 connected 1280x1024+1920+0"
+  return $?
+}
+
 function homeSetup() {
   ~/.screenlayout/home-dock.lt.sh
   bspc monitor DP-2 -d I II III IV V
@@ -22,9 +27,17 @@ function homeSetup() {
 
 function officeSetup() {
   ~/.screenlayout/office-nodock.sh
-  bspc monitor DP-2 -d I II III IV V
   bspc monitor HDMI-2 -d I II III IV V
   bspc monitor eDP-1 -d VI VII VIII IX X
+  ln -sf ~/.config/sxhkd/sxhkdrc-nodock ~/.config/sxhkd/sxhkdrc
+  ln -sf ~/.config/dunst/dunstrc-nodock ~/.config/dunst/dunstrc
+  ln -sf ~/Documents/Personal/private-configs/wallpapers/arch.png ~/.background
+}
+
+function homeSetupConMonitorDiMerda() {
+  ~/.screenlayout/monitor-merda.sh
+  bspc monitor eDP-1 -d I II III IV V
+  bspc monitor HDMI-2 -d VI VII VIII IX X
   ln -sf ~/.config/sxhkd/sxhkdrc-nodock ~/.config/sxhkd/sxhkdrc
   ln -sf ~/.config/dunst/dunstrc-nodock ~/.config/dunst/dunstrc
   ln -sf ~/Documents/Personal/private-configs/wallpapers/arch.png ~/.background
@@ -58,7 +71,11 @@ function autostartApps() {
 if EGPU; then
   homeSetup
 elif externalMonitor; then
-  officeSetup
+  if externalMonitorDiMerda; then
+    homeSetupConMonitorDiMerda
+  else
+    officeSetup
+  fi
 else
   standaloneSetup
 fi
