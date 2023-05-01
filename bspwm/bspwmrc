@@ -110,6 +110,7 @@ if EGPU; then
   bspc rule -a dolphin desktop='^3' follow=on focus=on state=tiled
   bspc rule -a FortiClient desktop='^9' follow=off focus=on state=floating
   bspc rule -a 'VirtualBox Manager':'VirtualBox Manager' desktop='^5' state=floating
+  bspc rule -a Chat-gpt desktop='^5' state=tiled
 else
   bspc desktop "^1" -l monocle
   bspc rule -a Firefox:Navigator desktop='^1' follow=off state=tiled focus=off
@@ -123,6 +124,7 @@ else
   bspc rule -a dolphin desktop='^8' follow=on focus=on state=tiled
   bspc rule -a FortiClient desktop='^10' follow=off focus=on state=floating
   bspc rule -a 'VirtualBox Manager':'VirtualBox Manager' desktop='^10' state=floating
+  bspc rule -a Chat-gpt desktop='^10' state=tiled
 fi
 
 bspc rule -a pavucontrol-qt state=tiled
