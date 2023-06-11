@@ -26,5 +26,6 @@ i3lock \
   --insidever-color="FFEB3BFF" --insidewrong-color="d23c3dff" \
   --ringver-color="FFEB3BFF" --ringwrong-color="d23c3dff" \
   --noinput-text "" --pass-media-keys --pass-volume-keys
+  --no-modkeytext
 
 rm $TMPBG
