@@ -33,7 +33,7 @@ function getCurSink() {
   #local curSinkName
 
   curSinkName=$(pactl info | awk '/Default Sink: / {print $3}')
-  curSinkDescription=$(pactl list sinks | grep -A 1 -E "Name: bluez_sink.10_E9_53_90_B2_5F" | sed -nE 's/Description: //p' | tr -d "\t")
+  curSinkDescription=$(pactl list sinks | grep -A 1 -E "Name: bluez_output.10_E9_53_90_B2_5F" | sed -nE 's/Description: //p' | tr -d "\t")
   curSink=$(pactl list sinks | grep -B 4 -E "Name: $curSinkName\$" | sed -nE 's/^Sink #([0-9]+)$/\1/p')
 }
 
@@ -304,10 +304,10 @@ function switchProfile() {
     return 1
   fi
   if [[ $curSinkDescription == *"FreeBuds 3" ]]; then
-    if [[ $curSinkName == *".handsfree_head_unit"* ]]; then
-      pacmd set-card-profile bluez_card.10_E9_53_90_B2_5F a2dp_sink
+    if [[ $curSinkName == *".headset-head-unit"* ]]; then
+      pactl set-card-profile bluez_card.10_E9_53_90_B2_5F a2dp-sink
     else
-      pacmd set-card-profile bluez_card.10_E9_53_90_B2_5F handsfree_head_unit
+      pactl set-card-profile bluez_card.10_E9_53_90_B2_5F headset-head-unit
     fi
   fi
 }
@@ -336,7 +336,7 @@ function output() {
 
   #    getNickname "$curSink"
 
-  if [[ $curSinkName == *".handsfree_head_unit"* ]]; then
+  if [[ $curSinkName == *".headset-head-unit"* ]]; then
     ICON_SINK=${ICONS_MICROPHONE[0]}
   else
     ICON_SINK=${ICONS_MICROPHONE[1]}
