@@ -33,9 +33,9 @@ function getCurSink() {
   #local curSinkName
 
   curSinkName=$(pactl info | awk '/Default Sink: / {print $3}')
-  curSinkDescription=$(pactl list sinks | grep -A 1 -E "Name: bluez_output.10_E9_53_90_B2_5F" | sed -nE 's/Description: //p' | tr -d "\t")
   curSink=$(pactl list sinks | grep -B 4 -E "Name: $curSinkName\$" | sed -nE 's/^Sink #([0-9]+)$/\1/p')
 }
+
 
 # Saves the sink passed by parameter's volume into a variable named `VOL_LEVEL`.
 function getCurVol() {
@@ -303,13 +303,25 @@ function switchProfile() {
     echo "PulseAudio not running"
     return 1
   fi
+  curSinkDescription=$(pactl list sinks | grep -A 1 -E "Name: bluez_output.10_E9_53_90_B2_5F" | sed -nE 's/Description: //p' | tr -d "\t")
   if [[ $curSinkDescription == *"FreeBuds 3" ]]; then
-    if [[ $curSinkName == *".headset-head-unit"* ]]; then
+    curSinkState=$(pactl list sinks | grep -B 4 -E "Name: bluez_output.10_E9_53_90_B2_5F.1\$" -A 20 | rg -i api.bluez5.profile | cut -d '"' -f2)
+    if [[ $curSinkState == *"headset-head-unit"* ]]; then
       pactl set-card-profile bluez_card.10_E9_53_90_B2_5F a2dp-sink
     else
       pactl set-card-profile bluez_card.10_E9_53_90_B2_5F headset-head-unit
     fi
   fi
+  curSinkDescription=$(pactl list sinks | grep -A 1 -E "Name: bluez_output.24_1A_E6_43_47_CA" | sed -nE 's/Description: //p' | tr -d "\t")
+  if [[ $curSinkDescription == "HUAWEI FreeBuds Pro 3" ]]; then
+    curSinkState=$(pactl list sinks | grep -B 4 -E "Name: bluez_output.24_1A_E6_43_47_CA.1\$" -A 20 | rg -i api.bluez5.profile | cut -d '"' -f2)
+    if [[ $curSinkState == *"headset-head-unit"* ]]; then
+      pactl set-card-profile bluez_card.24_1A_E6_43_47_CA a2dp-sink
+    else
+      pactl set-card-profile bluez_card.24_1A_E6_43_47_CA headset-head-unit
+    fi
+  fi
+
 }
 
 function output() {
@@ -336,7 +348,8 @@ function output() {
 
   #    getNickname "$curSink"
 
-  if [[ $curSinkName == *".headset-head-unit"* ]]; then
+  curSinkState=$(pactl list sinks | grep "object.serial = \"${curSink}\"" -B 30 | rg -i api.bluez5.profile | cut -d '"' -f2)
+  if [[ $curSinkState == *"headset-head-unit"* ]]; then
     ICON_SINK=${ICONS_MICROPHONE[0]}
   else
     ICON_SINK=${ICONS_MICROPHONE[1]}
