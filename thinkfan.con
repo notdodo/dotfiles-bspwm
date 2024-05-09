@@ -1,18 +1,22 @@
 sensors:
   - hwmon: /sys/class/hwmon
-    name: thinkpad
-    indices: [1, 2, 3, 4, 5, 6, 7]
-
-  - hwmon: /sys/class/hwmon
     name: coretemp
     indices: [1, 2, 3, 4, 5]
 
   - hwmon: /sys/class/hwmon
+    name: thinkpad
+    indices: [1, 2, 3, 4, 5, 6, 7]
+
+  - hwmon: /sys/class/hwmon
     name: nvme
-    indices: [1]
+    indices: [1, 2, 3]
 
   - hwmon: /sys/class/hwmon
     name: acpitz
+    indices: [1]
+
+  - hwmon: /sys/class/hwmon
+    name: pch_cannonlake
     indices: [1]
 
   - hwmon: /sys/class/hwmon
@@ -21,17 +25,22 @@ sensors:
     optional: true
 
   - tpacpi: /proc/acpi/ibm/thermal
-    indices: [0]
+    indices: [1, 2, 3, 5, 6, 7]
+
+  - nvml: 0e:00.0
+    optional: true
+
+  - nvml: 2d:00.0
 
 fans:
   - tpacpi: /proc/acpi/ibm/fan
 
 levels:
-  - [0, 0, 55]
-  - [1, 55, 60]
-  - [2, 60, 65]
-  - [3, 65, 70]
-  - [5, 70, 75]
-  - [6, 75, 80]
-  - [7, 80, 85]
-  - ["level disengaged", 85, 255]
+  - [0, 0, 50]
+  - [1, 50, 71]
+  - [2, 71, 77]
+  - [3, 77, 80]
+  - [5, 80, 84]
+  - [6, 84, 86]
+  - [7, 86, 88]
+  - ["level disengaged", 88, 255]
