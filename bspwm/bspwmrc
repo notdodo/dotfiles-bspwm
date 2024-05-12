@@ -1,18 +1,15 @@
 #!/usr/bin/env zsh
 
-function EGPU() {
+function hasEGPU() {
   lspci | grep -q "GeForce GTX 1070"
-  return $?
 }
 
-function externalMonitor() {
+function hasExternalMonitor() {
   xrandr | grep -q "HDMI-2 connected"
-  return $?
 }
 
-function externalMonitorDiMerda() {
+function hasExternalMonitorDiMerda() {
   xrandr | grep -q "HDMI-2 connected 1280x1024+1920+0"
-  return $?
 }
 
 function homeSetup() {
@@ -68,10 +65,10 @@ function autostartApps() {
   sxhkd &
 }
 
-if EGPU; then
+if hasEGPU; then
   homeSetup
-elif externalMonitor; then
-  if externalMonitorDiMerda; then
+elif hasExternalMonitor; then
+  if hasExternalMonitorDiMerda; then
     homeSetupConMonitorDiMerda
   else
     officeSetup
@@ -97,12 +94,13 @@ bspc config automatic_scheme longest_side
 
 bspc config external_rules_command ~/.config/bspwm/external_rules.sh
 
-if EGPU; then
+if hasEGPU; then
   bspc desktop "^6" -l monocle
   bspc rule -a Firefox:Navigator desktop='^6' follow=off state=tiled focus=off
   bspc rule -a Firefox:Places desktop='^6' follow=off state=floating focus=off
   bspc rule -a Firefox:Firefox desktop='^6' follow=off state=floating focus=off
-  bspc rule -a thunderbird-default desktop='^8' follow=off state=tiled focus=off
+  bspc rule -a thunderbird:Calendar desktop='^8' follow=off state=floating focus=off
+  bspc rule -a thunderbird desktop='^8' follow=off state=tiled focus=off
   bspc rule -a Mailspring desktop='^8' follow=off state=tiled focus=off
   bspc rule -a Slack desktop='^10' state=tiled focus=off
   bspc rule -a TelegramDesktop desktop='^2' follow=off state=floating focus=off
@@ -116,7 +114,8 @@ else
   bspc rule -a Firefox:Navigator desktop='^1' follow=off state=tiled focus=off
   bspc rule -a Firefox:Places desktop='^1' follow=off state=floating focus=off
   bspc rule -a Firefox:Firefox desktop='^1' follow=off state=floating focus=off
-  bspc rule -a thunderbird-default desktop='^3' follow=off state=tiled focus=off
+  bspc rule -a thunderbird:Calendar desktop='^3' follow=off state=floating focus=off
+  bspc rule -a thunderbird desktop='^3' follow=off state=tiled focus=off
   bspc rule -a Mailspring desktop='^3' follow=off state=tiled focus=off
   bspc rule -a Slack desktop='^5' focus=off
   bspc rule -a TelegramDesktop desktop='^7' follow=off state=floating focus=off
@@ -130,6 +129,5 @@ fi
 bspc rule -a pavucontrol-qt state=tiled
 bspc rule -a yakuake sticky=on state=floating layer=above
 bspc rule -a Yad sticky=on state=floating layer=above
-bspc rule -a thunderbird-default:Calendar state=floating focus=on
 
 autostartApps

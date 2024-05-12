@@ -71,6 +71,8 @@ parse_windows() {
         wname=" ${wname// - File Manager/}" ;;
       "obsidian"|"notion-app")
         wname=" ${wname// - Obsidian v[0-9]*.[0-9]*.[0-9]*/}" ;;
+      "polkit-kde-authentication-agent-1"|"1Password" )
+        wname=" ${wname}" ;;
       "Portmaster" )
         wname=" ${wname}" ;;
       "rdesktop"|"org.remmina.Remmina"|"Remote-viewer"|"krdc" )
@@ -88,7 +90,7 @@ parse_windows() {
       "Terminator"|"XTerm"|"konsole"|"yakuake" )
         wname="$(isVim "${wname_complete}" "${wname}")"
         wname="${wname//sudo /}" ;;
-      "Thunderbird"|"Mailspring"|"thunderbird-default" )
+      "Thunderbird"|"Mailspring"|"thunderbird" )
         wname=" ${wname// - Mozilla Thunderbird/}" ;;
       "Transmission-gtk"|"transmission" )
         wname=" ${wname}" ;;
